@@ -9,9 +9,9 @@ export class AlunosController {
   constructor(private readonly alunosService: AlunosService) {}
 
   @Post()
-  create(@Body() dados:{codigo_matricula:string;nome_completo:string;acompanhamento:string}) {
-    return this.alunosService.create(dados.codigo_matricula,dados.nome_completo,dados.acompanhamento);
-  }
+  create(@Body() dados: CreateAlunoDto) {
+  return this.alunosService.create(dados);
+}
 
   @Get()
   findAll() {
@@ -29,6 +29,6 @@ export class AlunosController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: number) {
   }
 }
