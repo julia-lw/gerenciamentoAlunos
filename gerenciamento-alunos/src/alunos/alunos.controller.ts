@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { AlunosService } from './alunos.service';
 import { CreateAlunoDto } from './dto/create-aluno.dto';
 import { UpdateAlunoDto } from './dto/update-aluno.dto';
+import { Aluno } from './entities/aluno.entity';
 
 @Controller('alunos')
 export class AlunosController {
