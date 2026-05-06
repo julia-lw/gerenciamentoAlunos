@@ -6,6 +6,6 @@ situacao:string;
 acompanhamento:string;
 
 constructor(){
-    this.situacao = 'Cursando.';
+    this.situacao = 'Cursando';
     }
 }
