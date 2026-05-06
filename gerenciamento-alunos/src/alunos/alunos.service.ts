@@ -5,24 +5,40 @@ import { Aluno } from './entities/aluno.entity';
 
 @Injectable()
 export class AlunosService {
-  create(createAlunoDto: CreateAlunoDto) {
-    const novoAluno = new Aluno(createAlunoDto);
-  return novoAluno;
+  private alunos:Aluno[]=[];
+
+  create(codigo_matricula:string,nome_completo:string,acompanhamento:string) {
+    const novoAluno = new Aluno();
+    novoAluno.codigo_matricula=codigo_matricula;
+    novoAluno.nome_completo=nome_completo;
+    novoAluno.acompanhamento=acompanhamento;
+    this.alunos.push(novoAluno)
+    return novoAluno;
   }
 
   findAll() {
-    return `This action returns all alunos`;
+    return this.alunos;
   }
 
   findOne(id: number) {
     return `This action returns a #${id} aluno`;
   }
 
-  update(id: number, updateAlunoDto: UpdateAlunoDto) {
-    return `This action updates a #${id} aluno`;
+  update(id: number, dados:Partial<Aluno>) {
+    const index = this.alunos.findIndex(alunos => alunos.id===id);
+    if(index >=0){
+      this.alunos[index]={...this.alunos[index],...dados};
+    return `O aluno #${id} foi atualizado com sucesso.`;
   }
+  return `O aluno #${id} não foi atualizado.`;
+}
 
   remove(id: number) {
-    return `This action removes a #${id} aluno`;
+    const index = this.alunos.findIndex(aluno => aluno.id===id);
+    if(index >=0){
+      this.alunos.splice(index,1);
+    return `O aluno #${id} foi removido com sucesso.`;
+    }
+    return `O aluno #${id} não foi encontrado.`;
   }
 }

@@ -9,8 +9,8 @@ export class AlunosController {
   constructor(private readonly alunosService: AlunosService) {}
 
   @Post()
-  create(@Body() createAlunoDto: CreateAlunoDto) {
-    return this.alunosService.create(createAlunoDto);
+  create(@Body() dados:{codigo_matricula:string;nome_completo:string;acompanhamento:string}) {
+    return this.alunosService.create(dados.codigo_matricula,dados.nome_completo,dados.acompanhamento);
   }
 
   @Get()
@@ -24,8 +24,8 @@ export class AlunosController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAlunoDto: UpdateAlunoDto) {
-    return this.alunosService.update(+id, updateAlunoDto);
+  update(@Param('id') id: string, @Body() dados:Partial<Aluno>) {
+    return this.alunosService.update(+id, dados);
   }
 
   @Delete(':id')
