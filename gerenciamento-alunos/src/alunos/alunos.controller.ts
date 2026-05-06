@@ -19,17 +19,16 @@ export class AlunosController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: number) {
     return this.alunosService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() dados:Partial<Aluno>) {
+  update(@Param('id') id: number, @Body() dados:Partial<Aluno>) {
     return this.alunosService.update(+id, dados);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.alunosService.remove(+id);
   }
 }
